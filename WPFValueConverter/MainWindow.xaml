@@ -4,9 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFValueConverter"
+        xmlns:check="clr-namespace:WPFValueConverter1"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Window.Resources>
+        <check:Converter x:Key="CheckboxConverter" ></check:Converter>
+    </Window.Resources>
+    <Grid Margin="10,60">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"  />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0">First Name</TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
 
+        <TextBlock Grid.Row="1" Grid.Column="0">Last Name</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+
+        <TextBlock Grid.Row="3" Grid.Column="0">Gender</TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Name="txtGender"></TextBox>
+
+        <TextBlock Grid.Row="4" Grid.Column="0">Married</TextBlock>
+        <CheckBox Grid.Row="4" Grid.Column="1" 
+                  IsChecked="{Binding Path=Text, ElementName=txtGender, Converter={StaticResource CheckboxConverter}}" 
+                  ></CheckBox>
     </Grid>
 </Window>
